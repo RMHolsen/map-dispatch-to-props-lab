@@ -23,7 +23,7 @@ export class RestaurantInput extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    // add missing code
+    this.props.addRestaurant(this.state);
   }
 
   render() {
@@ -49,6 +49,29 @@ export class RestaurantInput extends Component {
   }
 };
 
+/* const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (todo) => {
+      dispatch(addTodo(todo))
+    } 
+  return {
+    reducer: (newItemToBePassedThrough) => {
+      dispatch(reducer(newItemToBePassedThrough))
+    }
+  }
+  };
+}; */
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addRestaurant: (newRestaurant) => {
+      dispatch(addRestaurant(newRestaurant))
+    }
+  };
+};
 
 //connect this component by wrapping RestaurantInput below
-export default RestaurantInput
+export default connect(null, mapDispatchToProps)(RestaurantInput)
+/* HINT: remember that connect() passes dispatch as the second argument. 
+Since you won't have a mapStateToProps action in your RestaurantInput component, 
+you can ensure that dispatch is passed to mapDispatchToProps by passing null as the first argument to connect. */
